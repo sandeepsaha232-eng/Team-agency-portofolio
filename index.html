@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Team Agency Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+
+  <body>
+
+    <header class="site-header">
+      <a class="brand" href="#">
+        <span class="brand-mark">TA</span>
+        <span>Team Agency</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="#teamSection">Team</a>
+        <a href="#projectsSection">Projects</a>
+        <a href="#contactSection">Contact</a>
+      </nav>
+      <div class="controls">
+        <button id="themeToggle" aria-label="Toggle theme" aria-pressed="false">
+          <span id="themeIcon" aria-hidden="true">◐</span>
+          <span id="themeLabel">Light</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="container">
+
+      <section class="intro">
+        <div class="hero-copy">
+          <p class="eyebrow">Front-end studio / student team / build crew</p>
+          <h1>Team Agency</h1>
+          <p>We build crisp web apps, useful tools, and portfolio-ready products with clean code and a strong visual point of view.</p>
+          <div class="hero-actions">
+            <a class="button-link primary" href="#projectsSection">View Projects</a>
+            <a class="button-link ghost" href="#teamSection">Meet Team</a>
+          </div>
+        </div>
+        <div class="hero-panel" aria-label="Agency highlights">
+          <div>
+            <span class="metric">05</span>
+            <span class="metric-label">Live projects</span>
+          </div>
+          <div>
+            <span class="metric">04</span>
+            <span class="metric-label">Developers</span>
+          </div>
+          <div>
+            <span class="metric">100%</span>
+            <span class="metric-label">Built in public</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="team" id="teamSection">
+        <div class="section-heading">
+          <p class="eyebrow">People behind the pixels</p>
+          <h2>Team</h2>
+        </div>
+        <div class="team-grid" id="teamGrid"></div>
+      </section>
+
+      <section class="projects" id="projectsSection">
+        <div class="section-heading">
+          <p class="eyebrow">Selected work</p>
+          <h2>Projects</h2>
+        </div>
+        <div class="projects-grid" id="projectsGrid"></div>
+      </section>
+
+      <section class="contact" id="contactSection">
+        <div class="section-heading">
+          <p class="eyebrow">Start a conversation</p>
+          <h2>Contact</h2>
+        </div>
+        <form id="contactForm" novalidate>
+          <div class="form-row">
+            <input type="text" id="name" name="name" placeholder="Your name" required>
+            <input type="email" id="email" name="email" placeholder="Your email" required>
+          </div>
+
+          <textarea id="message" name="message" rows="5" placeholder="Message" required></textarea>
+
+          <div class="form-actions">
+            <button type="submit">Send</button>
+            <div id="formMsg" role="status" aria-live="polite"></div>
+          </div>
+        </form>
+      </section>
+
+    </main>
+
+    <footer class="site-footer">© Team Agency</footer>
+
+    <script src="script.js" defer></script>
+
+  </body>
+
+  </html>
