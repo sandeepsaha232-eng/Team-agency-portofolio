@@ -3,24 +3,28 @@ const team = [
 		name: 'Sandeep Saha',
 		git: 'https://github.com/sandeepsaha232-eng',
 		avatar: 'https://github.com/sandeepsaha232-eng.png',
+		tagline: 'Front-end builder focused on clean interactions and practical product ideas.',
 		skills: ['css', 'js', 'html', 'java', 'cpp']
 	},
 	{
 		name: 'SHARATH KUMAR RAJU MUDDULURI',
 		git: 'https://github.com/sharathkumarrajum1289',
 		avatar: 'https://github.com/sharathkumarrajum1289.png',
+		tagline: 'Turns rough concepts into structured interfaces with steady logic.',
 		skills: ['css', 'js', 'html', 'java', 'cpp']
 	},
 	{
 		name: 'Kshiteesh Pandey',
 		git: 'https://github.com/kshiteesh776-code',
 		avatar: 'https://github.com/kshiteesh776-code.png',
+		tagline: 'Builds data-driven screens, dashboards, and smooth user flows.',
 		skills: ['css', 'js', 'html', 'java', 'cpp']
 	},
 	{
 		name: 'Kanne Lakshmi Kanth',
 		git: 'https://github.com/lakshmikanth257-cyber',
 		avatar: 'https://github.com/lakshmikanth257-cyber.png',
+		tagline: 'Brings sharp problem solving to responsive layouts and app details.',
 		skills: ['css', 'js', 'html', 'java', 'cpp']
 	}
 ];
@@ -28,30 +32,55 @@ const team = [
 const projects = [
 	{
 		title: 'kanbar-board',
+		kicker: 'Workflow app',
+		mark: 'KB',
+		owner: 'Sandeep Saha',
+		avatar: 'https://github.com/sandeepsaha232-eng.png',
+		tagline: 'Plan work visually, move faster, stay organized.',
 		repo: 'https://github.com/sandeepsaha232-eng/kanbar-board',
 		live: 'https://kanbar-board-steel.vercel.app/',
 		desc: 'A Trello-style board with To Do, In Progress, and Done. State persists in localStorage.'
 	},
 	{
 		title: 'Expense-Tracker-CRUD-localStorage',
+		kicker: 'Finance tool',
+		mark: 'ET',
+		owner: 'Sandeep Saha',
+		avatar: 'https://github.com/sandeepsaha232-eng.png',
+		tagline: 'Track money with simple controls and instant clarity.',
 		repo: 'https://github.com/sandeepsaha232-eng/Expense-Tracker-CRUD-localStorage',
 		live: 'https://expense-tracker-crud-local-storage.vercel.app/',
 		desc: 'Log income and expenses with full CRUD. Data persists in localStorage.'
 	},
 	{
 		title: 'Interactive Quiz App',
+		kicker: 'Game experience',
+		mark: 'IQ',
+		owner: 'Sandeep Saha',
+		avatar: 'https://github.com/sandeepsaha232-eng.png',
+		tagline: 'Quick questions, clean feedback, playful learning.',
 		repo: 'https://github.com/sandeepsaha232-eng/INTERACTIVE-QUIZ-GAME',
 		live: 'https://interactivequizgame-eight.vercel.app/',
 		desc: 'Multiple-choice quiz with running score and final percentage.'
 	},
 	{
 		title: 'Live News Feed',
+		kicker: 'Dashboard',
+		mark: 'NF',
+		owner: 'Kshiteesh Pandey',
+		avatar: 'https://github.com/kshiteesh776-code.png',
+		tagline: 'Fresh stories organized into a focused reading surface.',
 		repo: 'https://github.com/kshiteesh776-code/News_Dashboard',
 		live: '#',
 		desc: 'News aggregator using async fetch, loading states, and filters.'
 	},
 	{
 		title: 'GitHub Developer Explorer',
+		kicker: 'Search app',
+		mark: 'GD',
+		owner: 'Sharath Kumar Raju',
+		avatar: 'https://github.com/sharathkumarrajum1289.png',
+		tagline: 'Discover developers, repos, and profile signals fast.',
 		repo: 'https://github.com/sharathkumarrajum1289/GitDevExplorer',
 		live: 'https://git-dev-explorer-mu.vercel.app/',
 		desc: 'Search GitHub users, view profile and repos.'
@@ -96,6 +125,7 @@ function renderTeam() {
 
 		const info = el('div', 'member-info');
 		const name = el('div', 'member-name', m.name);
+		const tagline = el('p', 'member-tagline', m.tagline);
 		const skills = el('div', 'skills');
 		m.skills.forEach(skill => {
 			const tag = el('span', '', skill);
@@ -108,6 +138,7 @@ function renderTeam() {
 		link.rel = 'noreferrer';
 
 		info.appendChild(name);
+		info.appendChild(tagline);
 		info.appendChild(skills);
 		info.appendChild(link);
 
@@ -122,11 +153,37 @@ function renderProjects() {
 	const grid = document.getElementById('projectsGrid');
 
 	projects.forEach((p, index) => {
-		const card = el('div', 'project-card');
+		const card = el('div', `project-card project-card-${index + 1}`);
 		card.style.setProperty('--delay', `${(index + team.length) * 70}ms`);
 
+		const preview = el('div', 'project-preview');
+		preview.setAttribute('aria-hidden', 'true');
+		for (let i = 0; i < 4; i += 1) {
+			preview.appendChild(el('span'));
+		}
+
+		const body = el('div', 'project-body');
+		const header = el('div', 'project-header');
+		const avatar = el('div', 'project-avatar');
+		const avatarImg = el('img');
+		const avatarFallback = el('span', '', p.mark);
+		const meta = el('div', 'project-meta');
+		const kicker = el('div', 'project-kicker', p.kicker);
+		const owner = el('div', 'project-owner', p.owner);
+		const tagline = el('p', 'project-tagline', p.tagline);
 		const h = el('h3', '', '');
 		h.textContent = p.title;
+
+		avatarImg.src = p.avatar;
+		avatarImg.alt = `${p.owner} avatar`;
+		avatarImg.loading = 'lazy';
+		avatarImg.referrerPolicy = 'no-referrer';
+		avatarImg.addEventListener('error', () => {
+			avatarImg.remove();
+			avatar.classList.add('project-avatar-fallback');
+		});
+		avatar.appendChild(avatarImg);
+		avatar.appendChild(avatarFallback);
 
 		const d = el('p', '', '');
 		d.textContent = p.desc;
@@ -146,9 +203,18 @@ function renderProjects() {
 		links.appendChild(r);
 		links.appendChild(l);
 
-		card.appendChild(h);
-		card.appendChild(d);
-		card.appendChild(links);
+		meta.appendChild(kicker);
+		meta.appendChild(owner);
+		meta.appendChild(tagline);
+		header.appendChild(avatar);
+		header.appendChild(meta);
+		body.appendChild(header);
+		body.appendChild(h);
+		body.appendChild(d);
+		body.appendChild(links);
+
+		card.appendChild(preview);
+		card.appendChild(body);
 
 		grid.appendChild(card);
 	});
