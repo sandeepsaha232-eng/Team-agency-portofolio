@@ -71,7 +71,7 @@ const projects = [
 		avatar: 'https://github.com/kshiteesh776-code.png',
 		tagline: 'Fresh stories organized into a focused reading surface.',
 		repo: 'https://github.com/kshiteesh776-code/News_Dashboard',
-		live: '#',
+		live: 'https://news-dashboard-gamma-two.vercel.app/',
 		desc: 'News aggregator using async fetch, loading states, and filters.'
 	},
 	{
