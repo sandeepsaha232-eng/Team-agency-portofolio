@@ -82,7 +82,7 @@ const projects = [
 		avatar: 'https://github.com/sharathkumarrajum1289.png',
 		tagline: 'Discover developers, repos, and profile signals fast.',
 		repo: 'https://github.com/sharathkumarrajum1289/GitDevExplorer',
-		live: 'https://git-dev-explorer-mu.vercel.app/',
+		live: 'https://git-dev-explorer-bay.vercel.app/',
 		desc: 'Search GitHub users, view profile and repos.'
 	}
 ];
